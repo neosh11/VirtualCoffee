@@ -1,18 +1,4 @@
-import { useRouter } from 'next/dist/client/router'
-import { signIn, signOut, useSession } from 'next-auth/client'
-import { pageRoutes } from '../../../lib/routes'
-
-export default function RegistrationDialogue() {
-  const router = useRouter()
-  const [session, loading] = useSession()
-
-  const handleLogin = () => {
-    if (!loading) signIn('facebook')
-  }
-  if (session) {
-    router.push('/dash')
-  }
-
+export default function RegistrationDialogue({ handleLogin }: { handleLogin: any }) {
   return (
     <>
       <div className='place-items-center grid my-10'>

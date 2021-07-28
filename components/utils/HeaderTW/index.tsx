@@ -25,6 +25,8 @@ import { headerText } from '../../../lib/constants/headers'
 import { navKeys } from '../../../lib/types'
 import CustomModal from '../CustomModal'
 import RegistrationDialogue from '../Registration'
+import { useRouter } from 'next/dist/client/router'
+import { signIn, signOut, useSession } from 'next-auth/client'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -32,6 +34,21 @@ function classNames(...classes: any) {
 
 export default function HeaderTW(props: { selectedNavKey: navKeys }) {
   const [open, setOpen] = useState(false)
+  const router = useRouter()
+  const [session, loading] = useSession()
+
+  const handleLogin = () => {
+    if (!loading)
+      signIn('facebook', {
+        callbackUrl: `${process.env.NEXTAUTH_URL}/post`
+      })
+  }
+
+  const onLoginButton = () => {
+    if (session) {
+      router.push('/dash')
+    } else setOpen(true)
+  }
 
   const DesktopHref = (p: { name: string; href: string; navKey: navKeys }) => {
     return (
@@ -81,10 +98,10 @@ export default function HeaderTW(props: { selectedNavKey: navKeys }) {
 
                 <div className='hidden md:flex items-center cursor-pointer justify-end md:flex-1 lg:w-0'>
                   <a
-                    onClick={() => setOpen(true)}
+                    onClick={onLoginButton}
                     className='bg-white p-2 rounded-md whitespace-nowrap text-base font-medium text-greenie hover:text-white hover:bg-greenie'
                   >
-                    Sign in
+                    Get In!
                   </a>
                 </div>
               </div>
@@ -124,7 +141,7 @@ export default function HeaderTW(props: { selectedNavKey: navKeys }) {
                       </a>
                       <p className='mt-6 text-center text-base font-medium text-gray-500'>
                         Existing User?
-                        <a onClick={() => setOpen(true)} className='text-greenie hover:text-greenie'>
+                        <a onClick={onLoginButton} className='text-greenie hover:text-greenie'>
                           Sign in
                         </a>
                       </p>
@@ -137,10 +154,8 @@ export default function HeaderTW(props: { selectedNavKey: navKeys }) {
         )}
       </Popover>
 
-      <CustomModal title="Get In!" open={open} setOpen={setOpen}>
-        <RegistrationDialogue />
-
-
+      <CustomModal title='Get In!' open={open} setOpen={setOpen}>
+        <RegistrationDialogue handleLogin={handleLogin} />
       </CustomModal>
     </>
   )

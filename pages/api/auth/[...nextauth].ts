@@ -10,11 +10,14 @@ const retda = (req: any, res: any) => {
         clientSecret: process.env.FACEBOOK_CLIENT_SECRET || ''
       })
       // ...add more providers here
-    ]
+    ],
+    
 
     // A database is optional, but required to persist accounts in a database
     // database: process.env.DATABASE_URL
   })
+
+
 }
 
 export default retda
