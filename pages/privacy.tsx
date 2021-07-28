@@ -1,7 +1,7 @@
 import BaseLayout from '../layouts/Base'
 
 
-export default function Home() {
+export default function Privacy() {
   return (
     <BaseLayout
       title='Virtual Coffee'

@@ -1,7 +1,8 @@
+import About from '../components/About'
 import BaseLayout from '../layouts/Base'
 import { pageRoutes } from '../lib/routes'
 
-export default function About() {
+export default function AboutPage() {
   return (
     <BaseLayout
       title='Virtual Coffee'
