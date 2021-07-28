@@ -9,6 +9,7 @@ import LoadingOverlay from '../components/utils/LoadingOverlay'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import Dash from '../components/Dash'
 
 const navigation = [{ name: 'Dashboard', href: '#', current: true }]
 const userNavigation = [
@@ -185,13 +186,13 @@ export default function Example() {
       <div className='py-10'>
         <header>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-            <h1 className='text-3xl font-bold leading-tight text-gray-900'>Find a Virtual Date</h1>
+            <h1 className='text-3xl font-bold leading-tight text-gray-900'>Get to know someone</h1>
           </div>
         </header>
         <main>
           <div className='max-w-7xl mx-auto sm:px-6 lg:px-8'>
             {/* Replace with your content */}
-            
+            <Dash />
             {/* /End replace */}
           </div>
         </main>
