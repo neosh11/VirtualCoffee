@@ -1,8 +1,3 @@
-import Head from 'next/head'
-
-import HomeIntro from '../components/Home/Intro'
-
-import Partners from '../components/Home/Partners'
 import BaseLayout from '../layouts/Base'
 import { pageRoutes } from '../lib/routes'
 
